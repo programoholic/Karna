@@ -1,0 +1,23 @@
+.table-row{
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    height: 80px;
+    border-radius: 5px;
+    justify-content: space-between;
+    align-items: center;
+}
+.avatar-section{
+    width: 15%;
+    height: 100%;
+}
+img{
+    object-fit: contain;
+}
+.title-section *{
+    margin: 0;
+    padding: 0;
+}
+.status{
+    margin-right: 5px;
+}

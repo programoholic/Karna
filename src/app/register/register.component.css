@@ -1,0 +1,43 @@
+.register-section{
+    /* display: flex;
+    justify-content: center;
+    align-items: flex-start; */
+    /* margin:10%;  */
+    /* height: 100%;  */
+    /* margin-top: 120px;
+    width: 90%; */
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.full-width{
+    width: 100%;
+}
+.half-width{
+    width: 50%;
+}
+
+mat-form-field{
+    width: 100%;
+}
+.two-fields{
+    display: flex;
+}
+.t-n-c{
+    margin: 10px;
+}
+
+.register-card{
+    box-shadow: none !important;
+    height: 600px;
+    width: 400px;
+}
+.error-section{
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+.title-value{
+    margin-left: 2px;
+    font-weight: 600;
+}

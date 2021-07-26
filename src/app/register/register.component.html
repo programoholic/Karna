@@ -1,0 +1,147 @@
+<section class="register-section">
+  <mat-card class="register-card">
+    <mat-card-content style="display: flex; flex-flow: column wrap;">
+      <div class="meta">
+        <img src="./assets/logo.svg" alt="logo image"/>
+        <h2 style="text-align: center; margin:20px"> 
+          Let’s get your account set up!
+        </h2>
+      </div>
+      <form novalidate #f="ngForm" (ngSubmit)="registerUser()">
+        <!-- School Section  -->
+        <div class="input full-width" [hidden]="currentView !== 1">
+          <!-- <h4>Let's get started.</h4> -->
+          <mat-form-field appearance="outline">
+            <mat-label>School registration number</mat-label>
+            <input
+              matInput
+              placeholder="enter school register number"
+              name="school"
+              [(ngModel)]="schoolId"
+              required
+              #school="ngModel"
+              autocomplete="on"
+            />
+            <mat-hint *ngIf="1 > 3">Hint</mat-hint>
+          </mat-form-field>
+        </div>
+        <!-- end of school Section -->
+        <!-- Roll Number section -->
+        <div class="input full-width" *ngIf="currentView === 2">
+          <h3> You're Registering with <span class="title-value"> {{schoolInfo?.name}} </span>  </h3>
+          <mat-form-field appearance="outline">
+            <mat-label>Enter roll number</mat-label>
+            <input
+              matInput
+              placeholder="enter your roll number"
+              name="roll"
+              [(ngModel)]="rollId"
+              [required]="currentView === 2"
+              #roll="ngModel"
+              autocomplete="on"
+            />
+            <mat-hint *ngIf="1 > 3">Hint</mat-hint>
+          </mat-form-field>
+        </div>
+        <!-- end of roll no section -->
+
+        <!-- OTP section -->
+        <div class="input full-width" *ngIf="currentView === 3">
+          <h3> Hi <span class="title-value">{{studentInfo?.firstName}} </span> !  </h3>
+          <h4> We have sent an OTP to your registered email.</h4>
+          <mat-form-field appearance="outline">
+            <mat-label>Enter OTP</mat-label>
+            <input
+              matInput
+              placeholder="enter your roll number"
+              name="otp"
+              [(ngModel)]="otpVal"
+              [required]="currentView === 3"
+              #otp="ngModel"
+            />
+            <mat-hint *ngIf="1 > 3">Hint</mat-hint>
+          </mat-form-field>
+        </div>
+        <!-- end of OTP section   -->
+
+        <!-- Password section -->
+        <div *ngIf="currentView === 4">
+          <div class="input full-width">
+            <h3> Hi <span class="title-value">{{studentInfo?.firstName}} </span> !  </h3>
+          <h4> We are almost done. Create a Password!</h4>
+            <mat-form-field appearance="outline">
+              <mat-label>password</mat-label>
+              <input
+                matInput
+                placeholder="enter password"
+                name="password"
+                [(ngModel)]="passwrd"
+                required
+                #otp="ngModel"
+                type="password"
+                autocomplete="on"
+              />
+              <mat-hint *ngIf="1 > 2">Hint</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="input full-width">
+            <mat-form-field appearance="outline">
+              <mat-label>confirm password</mat-label>
+              <input
+                matInput
+                placeholder="confirm password"
+                name="cpassword"
+                [(ngModel)]="cpasswrd"
+                required
+                #cpassword="ngModel"
+                type="password"
+                autocomplete="on"
+              />
+              <mat-hint *ngIf="1 > 2">Hint</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="input full-width">
+            <mat-checkbox
+              class="t-n-c"
+              name="tnc"
+              [(ngModel)]="termnC"
+              required
+              #tnc="ngModel"
+              >I accept all the terms & conditions!</mat-checkbox
+            >
+          </div>
+        </div>
+        <!-- End of password section -->
+        <div style="margin-bottom: 10px">
+          <button
+            mat-flat-button
+            color="primary"
+            class="full-width"
+            [disabled]="!f.valid || loading"
+            [class.spinner]="loading"
+          >
+            {{ currentView === 4 ? "Register" : "Next" }}
+          </button>
+        </div>
+      </form>
+      <div class="error-section">
+         <p class="error"> {{error}} </p>
+      </div>
+      <div>
+        <mat-divider></mat-divider>
+        <div style="margin-top: 20px;text-align: center;">
+          <h4>Already Registered ?</h4>
+          <a
+            mat-button
+            type="button"
+            color="primary"
+            class="full-width"
+            [routerLink]="['/login']"
+          >
+            Login
+          </a>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

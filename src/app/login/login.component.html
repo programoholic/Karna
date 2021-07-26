@@ -1,0 +1,82 @@
+<section class="login-component">
+    <mat-card class="login-card">
+      <mat-card-content style="display: flex; flex-flow: column wrap;">
+        <div class="meta">
+          <img src="./assets/logo.svg" alt="logo image"/>
+          <div class="title-section center-text">
+            <h2>Welcome to Karna!</h2>
+            <h6>Sign in to your account here.</h6>
+          </div>
+        </div>
+        <form [formGroup]="userLoginForm" (ngSubmit)="onSubmit()">
+          <div class="input">
+            <mat-form-field appearance="outline">
+              <mat-label>email</mat-label>
+              <input
+                matInput
+                type="email"
+                placeholder="enter email"
+                formControlName="email"
+              />
+              <!-- <mat-icon matPrefix>email</mat-icon> -->
+              <mat-hint
+                *ngIf="
+                  userLoginForm.get('email').invalid &&
+                  (userLoginForm.get('email').dirty ||
+                    userLoginForm.get('email').touched)
+                "
+                >Email is required!</mat-hint
+              >
+            </mat-form-field>
+          </div>
+          <div class="passwrd">
+            <mat-form-field appearance="outline">
+              <mat-label>password</mat-label>
+              <input
+                matInput
+                type="password"
+                placeholder="enter password"
+                formControlName="password"
+              />
+              <!-- <mat-icon matPrefix>lock</mat-icon> -->
+              <mat-hint
+                *ngIf="
+                  userLoginForm.get('password').invalid &&
+                  (userLoginForm.get('password').dirty ||
+                    userLoginForm.get('password').touched)
+                "
+                >password is required!</mat-hint
+              >
+            </mat-form-field>
+          </div>
+          <button
+            class="sign-btn"
+            mat-flat-button
+            color="primary"
+            type="submit"
+            [disabled]="!userLoginForm.valid || loading"
+            [class.spinner]="loading"
+          >
+            Sign in
+          </button>
+        </form>
+        <div *ngIf="errorText" class="error-text">
+          <p class="error"> {{errorText}} </p>
+        </div>
+         <!-- <div class="forgot-pwd">Forgot your <a href=""> password </a> ? </div> -->
+         <div class="bottom">
+          <mat-divider></mat-divider>
+         </div>
+         <div class="register-section center-text">
+             <h3> Don't have an account? </h3>
+          <a  class="sign-btn"
+          mat-button
+          color="primary"
+           [routerLink]="['/register']"
+          type="button"
+          > Register Here </a>
+         </div> 
+      </mat-card-content>
+    </mat-card>
+</section>
+

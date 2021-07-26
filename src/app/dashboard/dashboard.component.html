@@ -1,0 +1,46 @@
+<section style="margin: 5%">
+  <div
+    style="
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <div style="margin-right: 20px; width: 50%; position:relative">
+      <input
+        matInput
+        type="search"
+        placeholder="search here"
+        class="search-input"
+      />
+      <span class="search-icon"><mat-icon matSuffix>search</mat-icon></span>
+    </div>
+    <div style="margin-left: 20px; width: 20%">
+      <mat-select class="cat-select" placeholder="Category">
+        <mat-option *ngFor="let cat of categories" [value]="cat">{{
+          cat
+        }}</mat-option>
+      </mat-select>
+    </div>
+  </div>
+  <div style="margin-top: 20px">
+    <h2>Recommended</h2>
+    <carousel class="carousel-html-content" [height]="350">
+      <div
+        class="carousel-cell"
+        *ngFor="let inventory of inventoryItems;let index"
+      >
+        <app-card [product]="inventory" (addToCart)="addToCart(inventory)" (removeFromCart)="removeFromCart(inventory)"> </app-card>
+      </div>
+    </carousel>
+  </div>
+  <div style="margin-top: 40px; display: flex; flex-flow: column wrap">
+    <div *ngFor="let inventory of inventoryItems" style="margin: 10px">
+      <app-table [product]="inventory" (addToCart)="addToCart(inventory)" (removeFromCart)="removeFromCart(inventory)"> </app-table>
+    </div>
+    <div *ngIf="1>2">
+      <ngx-skeleton-loader count="5" [theme]="{ 'background-color': '#eeeaea', 'border-radius': '0', height: '50px' }"></ngx-skeleton-loader>
+    </div>
+  </div>
+</section>

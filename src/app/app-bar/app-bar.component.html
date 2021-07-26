@@ -1,0 +1,27 @@
+<mat-toolbar class="navbar">
+  <span><a [routerLink]="['/app/dashboard']"><img class="logo" src="./assets/logo.svg" /></a></span>
+  <span class="example-spacer"></span>
+  <div class="tool-bar-item cart">
+    <a mat-icon-button  [routerLink]="['/app/checkout']">
+    <mat-icon [matBadge]="cartItems?.length" matBadgeColor="primary">shopping_cart</mat-icon>
+    </a>
+    <span class="cdk-visually-hidden"> notifications </span>
+  </div>
+  <div class="tool-bar-item">
+    <a mat-icon-button [matMenuTriggerFor]="menu">
+      <img
+        class="mat-card-avatar-c"
+        src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=anis+alam"
+      />
+    </a>
+  </div>
+  <div class="tool-bar-item">
+    <a mat-icon-button routerLink="logout" matTooltip="sign out" matTooltipPosition="below" (click)="logout()" >
+      <mat-icon>logout</mat-icon>
+    </a>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Profile</button>
+      <button mat-menu-item>My Account</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

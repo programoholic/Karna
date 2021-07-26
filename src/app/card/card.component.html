@@ -1,0 +1,20 @@
+<div class="book-card">
+  <div class="image">
+    <img
+      src="{{product.cover_url}}"
+      height="100%"
+      width="100%"
+    />
+  </div>
+  <div class="meta">
+    <h3>{{product.name}}</h3>
+    <h5>{{product.by}}</h5>
+    <p class="cart">
+      <span>{{product.ratings}}</span>
+      <span *ngIf="!product || !product.added; else remove"> <a mat-icon-button color="primary" matTooltip="Add to cart" matTooltipPosition="below" (click)="addCart()"><mat-icon>add_shopping_cart</mat-icon> </a></span>
+      <ng-template #remove> 
+      <span> <a mat-icon-button color="warn" matTooltip="remove" matTooltipPosition="below" (click)="removeCart()"><mat-icon>delete</mat-icon> </a></span>
+      </ng-template>
+    </p>
+  </div>
+</div>

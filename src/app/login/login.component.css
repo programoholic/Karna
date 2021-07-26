@@ -1,0 +1,80 @@
+.login-component{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin:10%;  */
+  height: 100%; 
+}
+.login-card{
+    box-shadow: none !important;
+    height: 600px;
+    width: 400px;
+}
+.card{
+    border-radius: 0;
+    margin: 0;
+    min-width: 400px;
+    /* margin-left: 5%; */
+    /* margin-right: 5%; */
+    min-height: 200px;
+    max-height: 600px;
+    background: #fff;
+}
+.login-section{
+    display: flex;
+}
+/* .image{
+    width: 70%;
+} */
+.form-section{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-content: start;
+    width: 30%;
+    padding: 4%;
+    padding-top: 1%px;
+    padding-right: 0;
+}
+.logo{
+    align-self: center;
+}
+.sign-btn{
+    width:100%;
+}
+.title-section{
+    margin-top: 20px;
+}
+.title-section>h2{
+    margin: 0 !important;
+}
+
+@media (max-width:768px) {
+    .image{
+        /* display: none; */
+    }
+    .form-section{
+        /* width: 100% !important; */
+    }
+}
+.forgot-pwd{
+    margin: 20px;
+    margin-left: 0;
+}
+
+mat-form-field{
+    width: 100% !important;
+}
+.form-fields{
+    width: 90%;
+}
+.error-text{
+    margin:2px;
+    margin-top: 15px;
+}
+.register-section{
+    margin-top: 15px;
+}
+.bottom{
+    margin-top: 20px;
+}

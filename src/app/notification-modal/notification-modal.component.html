@@ -1,0 +1,11 @@
+<div class="wrap">
+  <div>
+    <mat-icon class="success-icon big-icon" *ngIf="data;else failed">check_circle</mat-icon>
+    <ng-template #failed>
+        <mat-icon class="failed-icon big-icon" color="warn">cancel</mat-icon>
+    </ng-template>
+  </div>
+  <h1>{{(data)?"Request submitted!": "Submission failed!"}}</h1>
+  <p>To dismiss click the button below</p>
+  <button mat-flat-button color="primary" [mat-dialog-close]="data">Dismiss</button>
+</div>

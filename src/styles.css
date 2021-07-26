@@ -1,1 +1,88 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  scrollbar-width: thin !important;
+  /* scrollbar-color: var(--dark-slate) var(--navy); */
+  /* background: whitesmoke; // #D8DBE4  */
+  background: #F0EFF4 ;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  /* font-family: 'Montserrat', sans-serif !important; */
+  /* background: url('./assets/bg.jfif'); */
+}
+
+.error{
+  color: red;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+::ng-deep .mat-form-field-label-wrapper { top: -1.5em !important; }
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.50) !important;
+    width: 133.33333% !important;
+}
+
+button{
+   color: #fff;
+}
+
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+ 
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner .8s linear infinite;
+}
+
+.meta{
+  display: flex;
+  flex-flow: column wrap;
+}
+.center-text{
+  text-align: center;
+}
+
+.light-theme button.mat-primary{
+   color: #fff !important;
+}
+
+/*  scroll */
+
+html {
+  scrollbar-width: thin;
+  /* scrollbar-color: var(--dark-slate) var(--navy); */
+}
+body::-webkit-scrollbar {
+  width: 12px;
+}
+body::-webkit-scrollbar-track {
+  /* background: #0a192f; */
+  background: #0a192f00;
+}
+body::-webkit-scrollbar-thumb {
+  /* background-color: #495670; */
+  background-color: #c7cbd3;;
+  border: 3px solid #f3ecec14;
+  border-radius: 10px;
+}
+.panel{
+  color: #fff;
+}

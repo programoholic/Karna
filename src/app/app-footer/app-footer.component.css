@@ -1,0 +1,14 @@
+.toolbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    background-color: #fff;
+    /* background: red; */
+    padding: 10px;
+}
+.text{
+    font-size: 15px !important;
+    /* color: #fff !important; */
+    font-weight: 400 !important;
+}

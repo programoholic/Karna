@@ -1,0 +1,74 @@
+@startuml
+title __KARNA REGISTRATION__
+
+box "Client" #LightBlue
+participant client
+end box
+
+box "Karna System" #LightGrey
+participant Karna_Server
+participant OTP_Service
+participant Cache_Service
+participant DB
+client -> Karna_Server  : POST / :school registration
+Karna_Server  -> CSR_Server : /GET/:schoolId
+
+alt if Valid School ID
+    CSR_Server  -> Karna_Server : result {schoolName: '',...}
+    Karna_Server  -> client : result {schoolName: '',...}
+    client -> client :  open Roll no view
+else Invalid School ID
+    CSR_Server  -> Karna_Server : 404 - not found
+    Karna_Server  -> client : 404 - not found
+    client -> client :  Show Error
+end
+
+client -> Karna_Server : /POST : Roll ID
+Karna_Server -> School_Server : /GET Roll ID
+
+alt if Valid Roll ID
+    School_Server  -> Karna_Server : result {Name: '',email :'',...}
+    Karna_Server  ->  OTP_Service :  Generate OTP and send to <email>
+    OTP_Service ->   Cache_Service : make an entry for OTP valid for 15 minutes
+    OTP_Service ->   Karna_Server : true/false
+    Karna_Server -> client : {name:'',email :'..',...}
+    client -> client : render verify OTP screen
+
+else Invalid Roll ID
+    School_Server  -> Karna_Server : 404 - not found
+    Karna_Server  -> client : 404 - not found
+    client -> client :  Show Error
+end
+
+client -> Karna_Server :  POST /verifyOTP : OTP
+Karna_Server -> OTP_Service : verifyOTP : OTP
+OTP_Service -> Cache_Service :  checks for OTP entry
+alt OTP is valid
+    OTP_Service -> Karna_Server : true
+    Karna_Server -> client : 200 OK : true
+    client -> client : render create password screen
+else Invalid OTP
+    OTP_Service -> Karna_Server : false
+    Karna_Server -> client : 404 Error
+    client -> client : show error
+end
+client ->  Karna_Server : POST/ Register User {name,id,password}
+Karna_Server -> DB :  insert a new User {name,id,password}
+DB -> Karna_Server : true/false
+Karna_Server ->  Karna_Server : Generate JWT Token (24h)
+Karna_Server ->  client :  JWT token in cookies - redirects to Dashboard
+
+end box
+box "CSR System" #f5f5f5
+participant CSR_Server
+end box
+
+box "School System" #LightGreen
+participant School_Server
+end box
+
+
+
+@enduml
+
+
