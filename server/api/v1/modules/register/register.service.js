@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
 
 const { schools, students } = require("../../../../core/common/constants");
 const config = require("../../../../appconfig");
 const otpService = require("../../../../services/OTP/otp.service");
-const Student = require("../../../../core/schema/studentSchema");
+import { Student } from "../../../../core/schema/studentSchema";
+const { createJWTToken } = require("../../../../core/utils/signResponse");
 const Schema = mongoose.Schema;
-const { connectionString, jwtdetails } = config;
+const { connectionString } = config;
 
 let db = null;
 
@@ -98,11 +98,7 @@ function register(user, done) {
             console.log(err);
             return done("Something went wrong..! try again later", null);
           }
-          const userToken = jwt.sign(
-            { name: user.firstName, email: user.email },
-            jwtdetails.secret,
-            { expiresIn: jwtdetails.expiryTime }
-          );
+          const userToken = createJWTToken(user);
           console.log('logged user : ', userToken);
           releaseDB();
           return done(null, userToken);

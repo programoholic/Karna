@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-
 const Schema = mongoose.Schema;
 const config = require("../../../../appconfig");
-const { connectionString,jwtdetails } = config; 
-const Student = require("../../../../core/schema/studentSchema");
+const { connectionString, jwtdetails } = config; 
+import { Student } from "../../../../core/schema/studentSchema";
+import { createJWTToken } from "../../../../core/utils/signResponse";
 let db = null;
 
 function verifyUserCred(payload, done) {
@@ -37,17 +37,7 @@ function verifyUserCred(payload, done) {
           return done("Invalid credentials!!!", null);
         } else {
             console.log("compare cuss");
-            console.log(jwtdetails);
-          let userDetails = {
-            name: user.firstName,
-            email: user.email,
-            id: user._id,
-            };
-            const userToken = jwt.sign(
-                userDetails,
-                jwtdetails.secret,
-                { expiresIn: jwtdetails.expiryTime }
-              );
+          const userToken = createJWTToken(user);
           releaseDB();
           return done(null, userToken);
         }

@@ -24,5 +24,9 @@ export class LoggedInAuthGuard implements CanActivate{
         return true;
 
     }
-
+    getUserDetails() {
+       const cookie =  Cookie.get('loggedUser')
+        const user = atob(cookie.split('.')[1]);
+        return JSON.parse(user);
+    }
 }

@@ -2,17 +2,17 @@
   <div class="avatar-section">
     <img
       class="mat-card-avatar-c"
-      [src]="product.cover_url"
+      [src]="product?.meta?.cover_url"
       height="100%"
       width="100%"
     />
   </div>
   <div class="title-section">
-    <h4>{{ product.name }}</h4>
+    <h4>{{ product.title}}</h4>
     <h5>{{ product.by }}</h5>
   </div>
   <div class="rating">
-    {{ product.ratings }}
+    {{ product?.meta?.ratings }}
   </div>
   <div class="category">
     {{ product.category }}
@@ -24,11 +24,11 @@
       *ngIf="!product || !product.added; else remove"
       (click)="addCart()"
     >
-      <mat-icon>add_shopping_cart</mat-icon> Add to cart
+      <mat-icon>add_shopping_cart</mat-icon> <span class="btn-title">Add to cart</span>
   </a>
     <ng-template #remove>
       <button mat-button color="warn" (click)="removeCart()">
-        <mat-icon>delete</mat-icon> Remove
+        <mat-icon>delete</mat-icon> <span class="btn-title">Remove</span>
       </button>
     </ng-template>
   </div>

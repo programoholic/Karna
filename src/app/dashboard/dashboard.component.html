@@ -26,21 +26,25 @@
   </div>
   <div style="margin-top: 20px">
     <h2>Recommended</h2>
-    <carousel class="carousel-html-content" [height]="350">
+    <carousel class="carousel-html-content" [height]="350" *ngIf="recommendations.length>0;else empty">
       <div
         class="carousel-cell"
-        *ngFor="let inventory of inventoryItems;let index"
+        *ngFor="let inventory of recommendations;let index"
       >
-        <app-card [product]="inventory" (addToCart)="addToCart(inventory)" (removeFromCart)="removeFromCart(inventory)"> </app-card>
+        <app-card [product]="inventory" (addToCart)="addToCart(inventory,'recommendation')" (removeFromCart)="removeFromCart(inventory,'recommendation')"> </app-card>
       </div>
     </carousel>
+    <ng-template #empty>
+        <app-empty-state [message]="notFound" icon="search"></app-empty-state>
+    </ng-template>
   </div>
   <div style="margin-top: 40px; display: flex; flex-flow: column wrap">
     <div *ngFor="let inventory of inventoryItems" style="margin: 10px">
-      <app-table [product]="inventory" (addToCart)="addToCart(inventory)" (removeFromCart)="removeFromCart(inventory)"> </app-table>
+      <app-table [product]="inventory" (addToCart)="addToCart(inventory,'table')" (removeFromCart)="removeFromCart(inventory,'table')"> </app-table>
     </div>
-    <div *ngIf="1>2">
-      <ngx-skeleton-loader count="5" [theme]="{ 'background-color': '#eeeaea', 'border-radius': '0', height: '50px' }"></ngx-skeleton-loader>
+    <div *ngIf="loading">
+      <app-loader></app-loader>
+      <!-- <ngx-skeleton-loader count="5" [theme]="{ 'background-color': '#eeeaea', 'border-radius': '0', height: '50px' }"></ngx-skeleton-loader> -->
     </div>
   </div>
 </section>

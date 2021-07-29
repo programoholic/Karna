@@ -3,7 +3,7 @@ const mongoose = require("mongoose"),
   bcrypt = require("bcrypt"),
   SALT_WORK_FACTOR = 10;
 
-const StudentSchema = new Schema({
+ const StudentSchema = new Schema({
   firstName: { type: String, require: true },
   lastName: { type: String },
   email: { type: String, require: true, unique: true,index: { unique: true }},
@@ -52,4 +52,5 @@ StudentSchema.methods.comparePassword = function (candidatePassword, done) {
     done(null, isMatch);
   });
 };
-module.exports =  mongoose.model('Student', StudentSchema);
+
+export const Student =  mongoose.model('Student', StudentSchema);

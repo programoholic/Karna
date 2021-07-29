@@ -43,6 +43,7 @@
 }
 .summary {
   margin: 20px;
+  padding-top: 15px;
 }
 .summary h4 {
   text-align: center;
@@ -89,3 +90,30 @@
 .info h5{
   margin: 0;
 }
+.container{
+  margin-top: 40px; 
+  display: flex; 
+  flex-flow: column wrap
+}
+.cart-items{
+  width: 50%
+}
+.checkout{
+  width: 300px;
+}
+@media screen and (max-width:768px) {
+  .checkout-container{
+      flex-flow: column wrap;
+   }
+   .cart-items{
+    width: 100%
+  }
+  .checkout{
+    width: auto;
+    margin:10px;
+  }
+  .card{
+    min-width: auto;
+  }
+}
+

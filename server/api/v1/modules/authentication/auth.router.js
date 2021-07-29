@@ -12,7 +12,8 @@ router.use('/',(req, res, next) => {        // eslint-disable-line consistent-re
       authCtrl.verifyToken(token, (err, decoded) => {
         if (err) {
           res.clearCookie(cookieInfo.user);
-          res.status(401).json({ error: ' Session Timeout... Please login again' });
+          return res.redirect('#/login');
+          // res.status(401).json({ error: ' Session Timeout... Please login again' });
         } else {
           req.user = decoded;
           next();
@@ -21,9 +22,10 @@ router.use('/',(req, res, next) => {        // eslint-disable-line consistent-re
     } else {
            // if there is no token
            // return an error
-      return res.status(403).send({
-        message: 'User not authenticated.',
-      });
+           return res.redirect('#/login');
+      // return res.status(403).send({
+      //   message: 'User not authenticated.',
+      // });
     }
   } catch (error) {
    // console.log(error);

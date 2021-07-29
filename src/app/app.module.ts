@@ -21,6 +21,8 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NotificationModalComponent } from './notification-modal/notification-modal.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { EmptyStateComponent } from './empty-state/empty-state.component';
+import { LoaderComponent } from './loader/loader.component';
 
 // import { StoreModule } from '@ngrx/store';
 // import { cartReducer } from './store/cart.reducer';
@@ -38,7 +40,9 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     HomeComponent,
     TableComponent,
     CheckoutComponent,
-    NotificationModalComponent
+    NotificationModalComponent,
+    EmptyStateComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

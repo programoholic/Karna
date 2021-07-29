@@ -8,16 +8,35 @@
     align-items: center;
 }
 .avatar-section{
-    width: 15%;
+    width: 20%;
     height: 100%;
+}
+.avatar-section img{
+    width: 100%;
 }
 img{
     object-fit: contain;
 }
-.title-section *{
+.title-section{
     margin: 0;
     padding: 0;
+    width:30%;
 }
 .status{
     margin-right: 5px;
+    width:20%;
 }
+.rating{
+    width:15%;
+}
+.category{
+    width:15%;
+
+}
+
+
+@media screen and (max-width:768px) {
+    .btn-title{
+        display: none !important;
+     }
+  }

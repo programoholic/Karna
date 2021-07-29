@@ -1,36 +1,13 @@
-// const kafka = require('kafka-node'); // configs for kafka consumer
-
-// const { Client } = kafka;
-
-// const client = new Client( (process.env.ZOOKEEPER_HOST || 'localhost') + ':2181');
-
 const inventoryConfig = {
   BOOK_STORE_API_BASE: 'https://api.itbook.store/1.0',
   ELECTRONIC_API_BASE: ''
 }
 
-const kafkaConfig = {
-  ZOOKEEPER_HOST: (process.env.ZOOKEEPER_HOST || 'localhost'),
-  ZOOKEEPER_CLIENT_URL: ( (process.env.ZOOKEEPER_HOST || 'localhost') + ':2181')
-}
-
-const options = {
-  autoCommit: true,
-  fetchMaxWaitMs: 1000,
-  fetchMaxBytes: 1024 * 1024,
-};
-
-const consumeroptions = {
-  groupId: 'ToolEvent',
-  autoCommit: true,
-  fetchMaxWaitMs: 1000,
-  fetchMaxBytes: 1024 * 1024,
-};
-
-const connectionString = { // config for cassandra
+// config for Mongo
+const connectionString = { 
   keyspace: 'KarnaDB',
   contact: (process.env.MONGODB_HOST || 'mongodb://localhost:'),
-  port: '27017',
+  port: '27888',
 };
 
 const redis = {
@@ -38,22 +15,6 @@ const redis = {
   port: process.env.REDIS_PORT || 6379,
 };
 const loggerConfig = { // config for log4js
-  // appenders: [{
-  //   type: 'console',
-  // }, {
-  //   type: 'file',
-  //   filename: './../logs/logger.log',
-  //   category: 'communities',
-  // }],
-  // appenders: {
-  //   fileLog: { type: 'file', filename: './../logs/logger.log' },
-  //   console: { type: 'log4js-protractor-appender' }
-  //   },
-  //   categories: {
-  //   file: { appenders: ['fileLog'], level: 'error' },
-  //   another: { appenders: ['console'], level: 'trace' },
-  //   default: { appenders: ['console', 'fileLog'], level: 'trace' }
-  //   }
   "appenders": {
     "access": {
       "type": "dateFile",
@@ -101,14 +62,9 @@ const cookieInfo = {
 
 module.exports = {
   connectionString,
-  events,
   loggerConfig,
-  options,
-  consumeroptions,
-  //client,
   jwtdetails,
   redis,
-  kafkaConfig,
   cookieInfo,
   inventoryConfig
 };

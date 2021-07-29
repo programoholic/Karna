@@ -12,4 +12,5 @@ router.use('/logout', (req, res) => {
 // secure routes for admin
 router.use(require('./modules/authentication'));
 router.use('/products', require('./modules/products'));
+router.use('/orders', require('./modules/orders'));
 module.exports = router;

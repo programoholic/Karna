@@ -3,9 +3,9 @@
     class="checkout-container"
     *ngIf="cartItems.length > 0; else empty"
   >
-    <div style="width: 50%">
+    <div class="cart-items">
       <div class="order-card">
-        <div style="margin-top: 40px; display: flex; flex-flow: column wrap">
+        <div class="container">
           <div *ngFor="let item of cartItems" style="margin: 10px;margin-bottom:5px;">
             <app-table [product]="item" (removeFromCart)="removeFromCart(item)">
             </app-table>
@@ -43,18 +43,18 @@
         </div>
       </div>
     </div>
-    <div style="width: 10%">
-      <div class="card checkout" style="width: 300px">
+    <div>
+      <div class="card checkout">
         <div class="summary">
           <h4>Cart Summary</h4>
           <p class="item">
-            <span> <h5>Books :</h5> </span> <span> <h5>5</h5> </span>
+            <span> <h5>Books :</h5> </span> <span> <h5>{{productSummary.books}}</h5> </span>
           </p>
           <p class="item">
-            <span> <h5>Laptop :</h5> </span> <span> <h5>1</h5> </span>
+            <span> <h5>Laptop :</h5> </span> <span> <h5>{{productSummary.tablet}}</h5> </span>
           </p>
           <p class="item">
-            <span> <h5>Tablet :</h5> </span> <span> <h5>2</h5> </span>
+            <span> <h5>Tablet :</h5> </span> <span> <h5>{{productSummary.laptop}}</h5> </span>
           </p>
         </div>
         <mat-divider></mat-divider>
@@ -75,6 +75,7 @@
             class="submit-btn"
             [disabled]="!termnC"
             (click)="submit()"
+            [class.spinner]="loading"
           >
             Submit Request
           </button>
@@ -95,8 +96,7 @@
           margin: 10%;
         "
       >
-        <mat-icon color="primary"> hourglass_empty </mat-icon>
-        <h3 style="margin: 0">Cart is empty!</h3>
+        <app-empty-state [message]="placeHolder.message" [icon]="placeHolder.icon"></app-empty-state>
       </div>
     </ng-template>
   </div>

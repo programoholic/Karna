@@ -41,4 +41,11 @@ const students = [
   }
 ];
 
-module.exports = { schools,students };
+export const ORDER_STATUS = {
+	CREATED: "created",
+	APPROVED: "approved",
+	SHIPPED: "shipped",
+	DELIVERED: "delivered",
+}
+
+module.exports = { schools,students,ORDER_STATUS };

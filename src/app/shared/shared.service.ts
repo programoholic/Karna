@@ -9,7 +9,8 @@ export class SharedService {
   private cartItems: any[];
   cartItemsVisibilityChange: Subject<any[]> = new Subject<any[]>();
   constructor(private _snackbar: MatSnackBar) {
-    this.cartItems = [];
+    const addedItems = window.localStorage.getItem('addedItem') || `[]`;
+    this.cartItems = JSON.parse(addedItems) || [];
     this.cartItemsVisibilityChange.subscribe((value) => {
       this.cartItems = value
   });
@@ -19,24 +20,27 @@ export class SharedService {
   }
   public setCartItems(item: any): void {
     const tempItem = [...this.cartItems, item];
-    this.cartItemsVisibilityChange.next(tempItem);
+    window.localStorage.setItem('addedItem', JSON.stringify(tempItem));
+    this.cartItemsVisibilityChange.next(tempItem); 
     this._snackbar.open('Item added!','Ok', {
       duration: 2000,
-      verticalPosition: 'top',
+      verticalPosition: 'bottom',
     });
     // this.cartItems.push(item);
   }
   removeCartItems(removedItem: any) {
-    const tempItem = this.cartItems.filter(item => item.id !== removedItem.id);
+    const tempItem = this.cartItems.filter(item => item.sku !== removedItem.sku);
+    window.localStorage.setItem('addedItem', JSON.stringify(tempItem));
     this.cartItemsVisibilityChange.next(tempItem);
     this._snackbar.open('Item removed!','Ok', {
       duration: 2000,
-      verticalPosition: 'top',
+      verticalPosition: 'bottom',
     });
   }
   public resetCartItems(): void {
     // this.cartItems = [];
     const tempItem = [];
+    window.localStorage.setItem('addedItem', JSON.stringify(tempItem));
     this.cartItemsVisibilityChange.next(tempItem);
 
   }

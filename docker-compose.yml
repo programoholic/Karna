@@ -1,0 +1,31 @@
+version: '2'
+services:
+
+  karna-app:
+    image: karnaapp
+    build:
+      context: ./
+      dockerfile: DockerFile
+    # network_mode: host
+    restart: on-failure
+    volumes:
+      - ./dockerScripts:/temp/scripts
+    ports:
+      - 3000:3000
+    # depends_on:
+    #   - karna-docker
+    # links:
+    #   - karna-mongo
+    # entrypoint:
+    #   -  /temp/scripts/wait-for-service.sh
+    #   - '0.0.0.0'
+    #   - '9042'
+    #   - 'npm start'
+    entrypoint:
+      -  /temp/scripts/wait-for-service.sh
+      - '10.20.1.218'
+      - '9042'
+      - 'npm start'
+    environment:
+        URL: '/'
+      

@@ -7,6 +7,7 @@ import {
 
 router.get("/recommendation", (req, res) => {
   const { email } = req.user;
+  console.log('email is : ', email);
   getUserRecommendations(email, (err, products) => {
     if (err) {
       return errorResponseBuilder(res, 500, "Internal server Error!");
